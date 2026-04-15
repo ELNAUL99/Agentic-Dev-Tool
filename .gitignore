@@ -1,0 +1,58 @@
+# Build artifacts and binaries
+*.exe
+*.dll
+*.so
+*.dylib
+/build/
+/bin/
+/dist/
+go-agent
+go-agent-*
+
+# Go test, coverage, and profiling output
+*.test
+*.out
+*.prof
+*.pprof
+coverage.html
+coverage.out
+coverage.txt
+cpu.out
+mem.out
+
+# Go workspace and dependency experiments
+go.work
+go.work.sum
+vendor/
+
+# Local agent state and secrets
+.go-agent/
+.env
+.env.*
+!.env.example
+
+# Logs and runtime output
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# Editor and IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*.swn
+*~
+
+# OS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini

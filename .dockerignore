@@ -1,0 +1,4 @@
+.go-agent/
+.git/
+*.md
+build/
