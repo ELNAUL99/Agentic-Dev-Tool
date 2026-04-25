@@ -1,0 +1,137 @@
+{
+  "id": "wf-1715071234",
+  "spec": {
+    "title": "Add restaurant search endpoint",
+    "description": "Add restaurant search endpoint",
+    "context": "",
+    "tags": ["backend", "api"],
+    "constraints": [],
+    "metadata": {}
+  },
+  "tasks": [
+    {
+      "id": "Add restaurant search endpoint-1",
+      "title": "Create Restaurant domain model",
+      "description": "Define Restaurant struct with fields: ID, Name, Cuisine, Lat, Lng, Rating, Address. Include JSON tags.",
+      "type": "code",
+      "status": "completed",
+      "priority": 8,
+      "depends_on": [],
+      "files": ["internal/restaurant/model.go"],
+      "tests": [],
+      "output": ""
+    },
+    {
+      "id": "Add restaurant search endpoint-2",
+      "title": "Create repository interface and search method",
+      "description": "Define Repository interface with Search and GetByID methods. Implement in-memory or SQL version.",
+      "type": "code",
+      "status": "completed",
+      "priority": 7,
+      "depends_on": ["Add restaurant search endpoint-1"],
+      "files": ["internal/restaurant/repository.go"],
+      "tests": [],
+      "output": ""
+    },
+    {
+      "id": "Add restaurant search endpoint-3",
+      "title": "Create service layer with business logic",
+      "description": "Implement Service struct with Search method. Add validation, sorting, and error handling.",
+      "type": "code",
+      "status": "completed",
+      "priority": 9,
+      "depends_on": ["Add restaurant search endpoint-2"],
+      "files": ["internal/restaurant/service.go"],
+      "tests": [],
+      "output": ""
+    },
+    {
+      "id": "Add restaurant search endpoint-4",
+      "title": "Create HTTP handler and register routes",
+      "description": "Implement Handler with Search and GetByID endpoints. Parse query parameters. Return JSON.",
+      "type": "code",
+      "status": "completed",
+      "priority": 9,
+      "depends_on": ["Add restaurant search endpoint-3"],
+      "files": ["internal/restaurant/handler.go"],
+      "tests": [],
+      "output": ""
+    },
+    {
+      "id": "Add restaurant search endpoint-5",
+      "title": "Write unit tests for service layer",
+      "description": "Write table-driven tests for Service.Search. Mock repository. Test validation errors.",
+      "type": "test",
+      "status": "completed",
+      "priority": 8,
+      "depends_on": ["Add restaurant search endpoint-3"],
+      "files": ["internal/restaurant/service_test.go"],
+      "tests": [],
+      "output": ""
+    },
+    {
+      "id": "Add restaurant search endpoint-6",
+      "title": "Write tests for HTTP handler",
+      "description": "Write tests for Search and GetByID handlers using httptest. Test query param parsing.",
+      "type": "test",
+      "status": "completed",
+      "priority": 7,
+      "depends_on": ["Add restaurant search endpoint-4"],
+      "files": ["internal/restaurant/handler_test.go"],
+      "tests": [],
+      "output": ""
+    }
+  ],
+  "status": "completed",
+  "started_at": "2024-05-07T10:00:00Z",
+  "ended_at": "2024-05-07T10:02:34Z",
+  "artifacts": [
+    {
+      "file_path": "examples/generated/restaurant.go",
+      "content": "",
+      "language": "go",
+      "description": "Create Restaurant domain model"
+    },
+    {
+      "file_path": "examples/generated/restaurant_test.go",
+      "content": "",
+      "language": "go",
+      "description": "Write unit tests for service layer"
+    },
+    {
+      "file_path": "examples/generated/handler.go",
+      "content": "",
+      "language": "go",
+      "description": "Create HTTP handler and register routes"
+    }
+  ],
+  "results": [
+    {
+      "task_id": "root",
+      "passed": true,
+      "exit_code": 0,
+      "stdout": "ok\tgithub.com/example/restaurant\t0.123s\ncoverage: 87.3% of statements\n",
+      "stderr": "",
+      "duration": 123000000,
+      "failures": [],
+      "coverage": 87.3
+    }
+  ],
+  "reviews": [
+    {
+      "task_id": "Add restaurant search endpoint-4",
+      "score": 92,
+      "issues": [],
+      "suggestions": [
+        "Add request logging middleware",
+        "Consider adding rate limiting"
+      ],
+      "approved": true,
+      "summary": "Well-structured handler with proper validation and error responses. Follows Go idioms."
+    }
+  ],
+  "metadata": {
+    "branch": "agent/wf-1715071234",
+    "commit": "[agent] Add restaurant search endpoint"
+  }
+}

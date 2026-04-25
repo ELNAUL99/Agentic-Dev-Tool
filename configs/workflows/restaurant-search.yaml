@@ -1,0 +1,55 @@
+# Example: Restaurant Search Feature Workflow
+# This shows how a spec maps to tasks
+
+spec:
+  title: "Add restaurant search endpoint"
+  description: |
+    Create a REST API endpoint that allows searching restaurants
+    by cuisine type, location, and rating. Support pagination
+    and sorting by distance.
+  context: |
+    Existing project uses chi router and PostgreSQL.
+    Restaurant model has: ID, Name, Cuisine, Lat, Lng, Rating, Address.
+  tags: [backend, api, search]
+  constraints:
+    - Must handle empty results gracefully
+    - Max 100 results per page
+    - Rate limit: 100 req/min
+
+workflow:
+  phases:
+    - name: planning
+      agent: planner
+      output: task_list
+
+    - name: code_generation
+      agent: coder
+      input: task_list
+      output: source_files
+
+    - name: test_generation
+      agent: coder
+      input: source_files
+      output: test_files
+
+    - name: test_execution
+      agent: testrunner
+      input: test_files
+      output: test_results
+      retry_on_failure: 3
+
+    - name: code_review
+      agent: reviewer
+      input: source_files
+      output: review_report
+
+    - name: git_commit
+      agent: git
+      input: review_report
+      condition: review_approved
+
+plugins:
+  db-schema:
+    entities: [restaurant, cuisine, location]
+  api-validator:
+    check: [pagination, rate_limiting, validation]
